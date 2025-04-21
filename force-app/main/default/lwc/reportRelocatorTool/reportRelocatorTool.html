@@ -1,0 +1,95 @@
+<template>
+
+    <!-- Spinner -->
+    <template if:true={showSpinner}>
+        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+    </template>
+
+    <lightning-layout multiple-rows>
+        <lightning-layout-item size="12">
+            <template if:false={isReportDeployed}>
+                <c-welcome-screen 
+                    is-selected-report-available={isSelectedReportAvailble}
+                    onreportfilter={handleReportFilter}
+                    onshowconfirmation={handleConfirmScreenVisiblity}
+                    onshowtoast={handleShowToast}>
+                </c-welcome-screen>
+            </template>
+        </lightning-layout-item>
+
+        <template if:true={isReportByFolder}>
+            <lightning-layout-item size="3">
+                <div class="slds-m-top--xx-small">
+                    <c-folder-screen
+                        onhideloading={hideLoading} 
+                        onshowloading={showLoading}
+                        onfolderselected={handleFolderSelection}
+                        max-row-selection="-1"
+                        onshowtoast={handleShowToast}>
+                    </c-folder-screen>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item size="6">
+                <div class="slds-m-top--xx-small slds-p-horizontal--xx-small">
+                    <c-report-screen 
+                        mode="inFolder"
+                        onreportselected={handleSelectedReport}
+                        onshowtoast={handleShowToast}>
+                    </c-report-screen>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item size="3">
+                <div class="slds-m-top--xx-small">
+                    <c-folder-screen
+                        onhideloading={hideLoading} 
+                        onshowloading={showLoading}
+                        onfolderselected={handleFolderSelection}
+                        max-row-selection="1"
+                        onshowtoast={handleShowToast}>
+                    </c-folder-screen>
+                </div>
+            </lightning-layout-item>
+        </template>
+
+        <template if:true={isAllReport}>
+            <lightning-layout-item size="8">
+                <div class="slds-m-top--xx-small slds-p-right--xx-small">
+                    <c-report-screen 
+                        mode="allReport"
+                        onreportselected={handleSelectedReport}
+                        onshowtoast={handleShowToast}>
+                    </c-report-screen>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item size="4">
+                <div class="slds-m-top--xx-small">
+                    <c-folder-screen
+                        onhideloading={hideLoading} 
+                        onshowloading={showLoading}
+                        onfolderselected={handleFolderSelection}
+                        max-row-selection="1"
+                        onshowtoast={handleShowToast}>
+                    </c-folder-screen>
+                </div>
+            </lightning-layout-item>
+        </template>
+    </lightning-layout>
+
+    <template if:true={showConfirmationScreen}>
+        <c-deployment-review-screen
+            reports={selectedReportInfo}
+            onhideconfirmationscreen={hideConfirmationScreenModal}
+            onsavechangestodatabase={handleSave}
+            title={title}
+            onshowtoast={handleShowToast}>
+        </c-deployment-review-screen>
+    </template>
+
+    <template if:true={showResultScreen}>
+        <c-result-screen
+            job-id={jobId}
+            oncloseresultscreen={hideResultScreen}
+            onshowtoast={handleShowToast}>
+        </c-result-screen>
+    </template>
+</template>

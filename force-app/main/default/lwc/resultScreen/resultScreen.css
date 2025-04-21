@@ -1,0 +1,38 @@
+.welcome-message {
+	text-align: center;
+}
+
+.heading-level-1 {
+	font-size: 50px;
+}
+
+.heading-level-5 {
+	font-size: 15px;
+}
+
+.welcome-message-font {
+	font-family: cursive;
+}
+
+.button {
+  background-color: #a61e4d;
+  color: #efefef;
+  border: none;
+  text-align: center;
+  padding: 10px 20px;
+  transition-property: background-color;
+  transition-duration: 2s;
+  transition-delay: 0s;
+}
+
+.rounded-corners {
+  border-radius: 15px;
+}
+
+.btn-menu button.button:hover {
+	background-color: #1a9cd8;
+}
+
+.modalBody {
+    position: relative;
+}

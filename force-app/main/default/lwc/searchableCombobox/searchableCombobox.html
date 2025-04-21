@@ -1,0 +1,54 @@
+<template>
+    <div class="slds-form-element">
+        <!-- <label class="slds-form-element__label" for="combobox-id-12" id="combobox-label-id-134">Relate To</label> -->
+        <div class="slds-form-element__control">
+            <div class="slds-combobox_container">
+                <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open">
+                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                        <lightning-input 
+                            type="text" 
+                            variant="label-hidden" 
+                            name="input" 
+                            placeholder={placeholder}
+                            onfocus={showDropdown} 
+                            data-id="drop-down-inputBox" 
+                            onchange={handleChange}
+                            value={selectedOption.label}>
+                        </lightning-input>
+                        <!-- <input type="text" class="slds-input slds-combobox__input" id="combobox-id-12" aria-autocomplete="list" aria-controls="listbox-id-10" aria-expanded="true" aria-haspopup="listbox" auto-complete="off" role="combobox" placeholder={placeholder}
+                               onfocus={showDropdown} data-id="drop-down-inputBox" onkeypress={handleChange}/> -->
+                        <span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                            <lightning-icon icon-name="utility:search" size=" x-small"></lightning-icon>
+                        </span>
+                    </div>
+                    <div id="listbox-id-10" class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid slds-hide" role="listbox" data-id="drop-down-list">
+                        <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                            <template if:true={listOfOptions}>
+                                <template for:each={listOfOptions} for:item="option" for:index="index">
+                                    <li key={option.label} role="presentation" class="slds-listbox__item" data-index={index} onclick={getSelectedOption}>
+                                        <div class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small" role="option">
+                                            <span class="slds-media__figure slds-listbox__option-icon"></span>
+                                            <span class="slds-media__body">
+                                                <span class="slds-truncate" title="Burlington Textiles Corp of America">{option.label}</span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </template>
+                            </template>
+                            <template if:false={listOfOptions}>
+                                <li role="presentation" class="slds-listbox__item">
+                                        <div class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small" role="option">
+                                            <span class="slds-media__figure slds-listbox__option-icon"></span>
+                                            <span class="slds-media__body">
+                                                <span class="slds-truncate" title="Burlington Textiles Corp of America">{showMessageOnEmptyOptions}</span>
+                                            </span>
+                                        </div>
+                                    </li>
+                            </template>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

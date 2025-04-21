@@ -1,0 +1,25 @@
+<template>
+    <lightning-card>
+        <!-- Search box -->
+        <c-search-input-box
+            placeholder="Enter report name here..."
+            is-loading={showSearchLoading}
+            oninputchange={handleInputChange}>
+        </c-search-input-box>
+        <template if:true={isReportAvailable}>
+            <!-- Table -->
+            <lightning-datatable
+                key-field="reportId"
+                data={reports}
+                columns={columns}
+                selected-rows={selectedReportIds}
+                onrowselection={handleRowSelection}>
+            </lightning-datatable>
+        </template>
+        <template if:false={isReportAvailable}>
+            <div class="slds-align--absolute-center slds-m-vertical--xx-large">
+                {message}
+            </div>
+        </template>
+    </lightning-card>
+</template>

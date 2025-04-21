@@ -1,0 +1,29 @@
+<template>
+    <!-- Search box -->
+    <div class="slds-form-element slds-m-around--medium">
+        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left-right slds-input-has-icon_group-right">
+            <lightning-icon 
+                size="xx-small" 
+                icon-name="utility:search" 
+                alternative-text="Search" 
+                title="Search" 
+                class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default">
+            </lightning-icon>
+            <input 
+                type="text" 
+                placeholder={placeholder} 
+                class="slds-input serach-box" 
+                onchange={handleInputChange}
+            />
+            <template if:true={showSpinner}>
+                <div class="slds-input__icon-group slds-input__icon-group_right">
+                    <div role="status" class="slds-spinner slds-spinner_brand slds-spinner_x-small slds-input__spinner">
+                        <span class="slds-assistive-text">Loading</span>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>
